@@ -1,0 +1,15 @@
+C:\New folder\NetCoreAPI1\newApp\bin\Debug\net10.0\NewApp.exe
+C:\New folder\NetCoreAPI1\newApp\bin\Debug\net10.0\NewApp.deps.json
+C:\New folder\NetCoreAPI1\newApp\bin\Debug\net10.0\NewApp.runtimeconfig.json
+C:\New folder\NetCoreAPI1\newApp\bin\Debug\net10.0\NewApp.dll
+C:\New folder\NetCoreAPI1\newApp\bin\Debug\net10.0\NewApp.pdb
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.AssemblyInfoInputs.cache
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.AssemblyInfo.cs
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.csproj.CoreCompileInputs.cache
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.sourcelink.json
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.dll
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\refint\NewApp.dll
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.pdb
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\NewApp.genruntimeconfig.cache
+C:\New folder\NetCoreAPI1\newApp\obj\Debug\net10.0\ref\NewApp.dll
