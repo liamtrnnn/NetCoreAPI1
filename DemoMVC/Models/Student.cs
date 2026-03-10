@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DemoMVC.Models
 {
     public class Student
     {
-        public string StudentCode { get; set; } = "";
+        public int Id { get; set; }
 
-        public string FullName { get; set; } = "";
+        public string? StudentCode { get; set; }
+
+        public string? FullName { get; set; }
     }
 }

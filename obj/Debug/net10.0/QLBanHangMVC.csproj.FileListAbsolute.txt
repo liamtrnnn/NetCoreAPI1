@@ -1,0 +1,10 @@
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.csproj.AssemblyReference.cache
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.AssemblyInfoInputs.cache
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.AssemblyInfo.cs
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.csproj.CoreCompileInputs.cache
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.RazorAssemblyInfo.cache
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.RazorAssemblyInfo.cs
+C:\New folder\NetCoreAPI1\obj\Debug\net10.0\QLBanHangMVC.sourcelink.json
