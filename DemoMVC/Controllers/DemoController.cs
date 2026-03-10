@@ -6,7 +6,7 @@ namespace DemoMVC.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.FullName = "Chao mung ban den voi ASP.NET Core MVC";
+            ViewBag.Message = "Hello Lam - SV001";
             return View();
         }
     }
