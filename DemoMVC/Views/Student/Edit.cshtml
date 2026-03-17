@@ -2,22 +2,26 @@
 
 <h2>Sửa sinh viên</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
 
     <input type="hidden" asp-for="Id" />
 
     <div>
-        <label>Mã sinh viên</label>
+        <label asp-for="StudentCode"></label>
         <input asp-for="StudentCode" class="form-control"/>
+        <span asp-validation-for="StudentCode"></span>
     </div>
 
     <div>
-        <label>Họ tên</label>
+        <label asp-for="FullName"></label>
         <input asp-for="FullName" class="form-control"/>
+        <span asp-validation-for="FullName"></span>
     </div>
 
-    <br>
-
-    <button type="submit" class="btn btn-primary">Lưu</button>
+    <button type="submit">Save</button>
 
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

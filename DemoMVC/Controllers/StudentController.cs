@@ -13,22 +13,30 @@ namespace DemoMVC.Controllers
             _context = context;
         }
 
-        // HIỂN THỊ DANH SÁCH
-        public IActionResult Index()
+        // 🔍 HIỂN THỊ + SEARCH
+        public IActionResult Index(string searchString)
         {
-            var students = _context.Students.ToList();
-            return View(students);
+            var students = _context.Students.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s =>
+                    s.FullName.Contains(searchString) ||
+                    s.StudentCode.Contains(searchString));
+            }
+
+            return View(students.ToList());
         }
 
-        // CREATE GET
+        // ================= CREATE =================
+
+        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // CREATE POST
-
-
+        // POST
         [HttpPost]
         public IActionResult Create(Student student)
         {
@@ -41,44 +49,51 @@ namespace DemoMVC.Controllers
 
             return View(student);
         }
-        // EDIT GET
+
+        // ================= EDIT =================
+
+        // GET
         public IActionResult Edit(int id)
-{
-    var student = _context.Students.Find(id);
+        {
+            var student = _context.Students.Find(id);
 
-    if (student == null)
-    {
-        return NotFound();
-    }
+            if (student == null)
+            {
+                return View("NotFound");
+            }
 
-    return View(student);
-}
+            return View(student);
+        }
 
-// EDIT POST
-[HttpPost]
-public IActionResult Edit(Student student)
-{
-    if (ModelState.IsValid)
-    {
-        _context.Students.Update(student);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
+        // POST
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Students.Update(student);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-    return View(student);
-}
-// DELETE
-public IActionResult Delete(int id)
-{
-    var student = _context.Students.Find(id);
+            return View(student);
+        }
 
-    if (student != null)
-    {
-        _context.Students.Remove(student);
-        _context.SaveChanges();
-    }
+        // ================= DELETE =================
 
-    return RedirectToAction("Index");
-}
+        public IActionResult Delete(int id)
+        {
+            var student = _context.Students.Find(id);
+
+            if (student == null)
+            {
+                return View("NotFound");
+            }
+
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,36 +1,30 @@
-@model List<DemoMVC.Models.Student>
+@model IEnumerable<DemoMVC.Models.Student>
 
 <h2>Danh sách sinh viên</h2>
 
-<a asp-action="Create" class="btn btn-primary">Thêm sinh viên</a>
+<form method="get">
+    <input type="text" name="searchString" placeholder="Tìm kiếm..." />
+    <button type="submit">Search</button>
+</form>
 
-<br />
-<br />
+<a href="/Student/Create">➕ Thêm mới</a>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Mã sinh viên</th>
-            <th>Họ tên</th>
-            <th>Chức năng</th>
-        </tr>
-    </thead>
-
-    <tbody>
+<table class="table">
+    <tr>
+        <th>Mã SV</th>
+        <th>Họ tên</th>
+        <th>Hành động</th>
+    </tr>
 
 @foreach (var item in Model)
 {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.StudentCode</td>
-            <td>@item.FullName</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <tr>
+        <td>@item.StudentCode</td>
+        <td>@item.FullName</td>
+        <td>
+            <a href="/Student/Edit/@item.Id">Sửa</a> |
+            <a href="/Student/Delete/@item.Id">Xoá</a>
+        </td>
+    </tr>
 }
-
-    </tbody>
 </table>
