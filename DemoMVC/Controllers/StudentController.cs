@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DemoMVC.Data;
 using DemoMVC.Models;
+using System.Linq;
 
 namespace DemoMVC.Controllers
 {
@@ -13,7 +14,7 @@ namespace DemoMVC.Controllers
             _context = context;
         }
 
-        // 🔍 HIỂN THỊ + SEARCH
+        // HIỂN THỊ + SEARCH
         public IActionResult Index(string searchString)
         {
             var students = _context.Students.AsQueryable();
@@ -21,22 +22,21 @@ namespace DemoMVC.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s =>
-                    s.FullName.Contains(searchString) ||
-                    s.StudentCode.Contains(searchString));
+                    (s.FullName != null && s.FullName.Contains(searchString)) ||
+                    (s.StudentCode != null && s.StudentCode.Contains(searchString))
+                );
             }
 
             return View(students.ToList());
         }
 
-        // ================= CREATE =================
-
-        // GET
+        // CREATE GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST
+        // CREATE POST
         [HttpPost]
         public IActionResult Create(Student student)
         {
@@ -50,22 +50,20 @@ namespace DemoMVC.Controllers
             return View(student);
         }
 
-        // ================= EDIT =================
-
-        // GET
+        // EDIT GET
         public IActionResult Edit(int id)
         {
             var student = _context.Students.Find(id);
 
             if (student == null)
             {
-                return View("NotFound");
+                return NotFound();
             }
 
             return View(student);
         }
 
-        // POST
+        // EDIT POST
         [HttpPost]
         public IActionResult Edit(Student student)
         {
@@ -79,19 +77,16 @@ namespace DemoMVC.Controllers
             return View(student);
         }
 
-        // ================= DELETE =================
-
+        // DELETE
         public IActionResult Delete(int id)
         {
             var student = _context.Students.Find(id);
 
-            if (student == null)
+            if (student != null)
             {
-                return View("NotFound");
+                _context.Students.Remove(student);
+                _context.SaveChanges();
             }
-
-            _context.Students.Remove(student);
-            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
