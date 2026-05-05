@@ -1,0 +1,28 @@
+@model IEnumerable<DemoMVC.Models.Customer>
+
+<h2>Danh sách khách hàng</h2>
+
+<p>
+    <a asp-action="Create">Thêm khách</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Tên</th>
+        <th>SĐT</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Phone</td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+            <a asp-action="Orders" asp-route-id="@item.Id">Xem đơn hàng</a>
+        </td>
+    </tr>
+}
+</table>
