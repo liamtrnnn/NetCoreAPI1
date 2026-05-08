@@ -20,10 +20,18 @@ namespace DemoMVC.Controllers
         }
 
         // GET: Category
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Categories.ToListAsync());
-        }
+         public async Task<IActionResult> Index(string search)
+{
+    var categories = from c in _context.Categories
+                     select c;
+
+    if (!string.IsNullOrEmpty(search))
+    {
+        categories = categories.Where(c => c.Name.Contains(search));
+    }
+
+    return View(await categories.ToListAsync());
+}
 
         // GET: Category/Details/5
         public async Task<IActionResult> Details(int? id)

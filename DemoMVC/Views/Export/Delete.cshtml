@@ -1,0 +1,13 @@
+@model DemoMVC.Models.Export
+
+<h1>Delete</h1>
+
+<p>Are you sure?</p>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Delete
+    </button>
+</form>

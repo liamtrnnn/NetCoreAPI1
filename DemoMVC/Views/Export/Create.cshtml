@@ -1,0 +1,101 @@
+@model DemoMVC.Models.Export
+
+@{
+    ViewData["Title"] = "Create Import";
+}
+
+<h2>Create Import</h2>
+
+<form asp-action="Create" method="post">
+
+
+    <hr />
+
+    <h4>Danh sách sản phẩm</h4>
+
+    <table class="table" id="productTable">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select name="details[0].ProductId" class="form-control">
+                        @foreach (var p in ViewBag.Products)
+                        {
+                            <option value="@p.Id">@p.Name</option>
+                        }
+                    </select>
+</td>
+<td><input type="number" name="details[0].Quantity"
+class="form-control" /></td>
+<td><input type="number" name="details[0].Price"
+class="form-control" /></td>
+<td><button type="button" class="btn btn-danger"
+onclick="removeRow(this)">X</button></td>
+</tr>
+</tbody>
+</table>
+
+    <button type="button" class="btn btn-success" onclick="addRow()">+ Thêm
+sản phẩm</button>
+<button type="submit" class="btn btn-primary">Create</button>
+</form>
+@section Scripts{
+<script>
+    let index = 1;
+
+    function addRow() {
+
+        let table = document
+            .getElementById("productTable")
+            .getElementsByTagName('tbody')[0];
+
+        let row = `
+        <tr>
+            <td>
+                <select name="details[${index}].ProductId" class="form-control">
+                    @foreach (var p in ViewBag.Products)
+                    {
+                        <option value="@p.Id">@p.Name</option>
+                    }
+                </select>
+            </td>
+
+            <td>
+                <input type="number"
+                       name="details[${index}].Quantity"
+                       class="form-control" />
+            </td>
+
+            <td>
+                <input type="number"
+                       step="0.01"
+                       name="details[${index}].Price"
+                       class="form-control" />
+            </td>
+
+            <td>
+                <button type="button"
+                        onclick="removeRow(this)">
+                    X
+                </button>
+            </td>
+        </tr>
+        `;
+
+        table.insertAdjacentHTML('beforeend', row);
+
+        index++;
+    }
+
+    function removeRow(btn) {
+        btn.closest('tr').remove();
+    }
+</script>
+}

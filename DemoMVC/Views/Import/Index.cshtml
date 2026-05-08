@@ -1,17 +1,9 @@
-@model IEnumerable<DemoMVC.Models.Product>
+@model IEnumerable<DemoMVC.Models.Import>
 
 @{
     ViewData["Title"] = "Index";
 }
-<form method="get">
-    <input type="text"
-           name="search"
-           placeholder="Search product..." />
 
-    <button type="submit">Search</button>
-</form>
-
-<br />
 <h1>Index</h1>
 
 <p>
@@ -21,13 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.Supplier)
             </th>
             <th></th>
         </tr>
@@ -36,13 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
+                @Html.DisplayFor(modelItem => item.Supplier.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

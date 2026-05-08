@@ -20,12 +20,19 @@ namespace DemoMVC.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index()
-        {
-            var appDbContext = _context.Products.Include(p => p.Category);
-            return View(await appDbContext.ToListAsync());
-        }
+        public async Task<IActionResult> Index(string search)
+{
+    var products = _context.Products
+        .Include(p => p.Category)
+        .AsQueryable();
 
+    if (!string.IsNullOrEmpty(search))
+    {
+        products = products.Where(p => p.Name.Contains(search));
+    }
+
+    return View(await products.ToListAsync());
+}
         // GET: Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +55,7 @@ namespace DemoMVC.Controllers
         // GET: Product/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -57,17 +64,19 @@ namespace DemoMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,CategoryId")] Product product)
+         public async Task<IActionResult> Create(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            return View(product);
+         if (ModelState.IsValid)
+       {
+        _context.Add(product);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
         }
+
+           ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+
+        return View(product);
+         }
 
         // GET: Product/Edit/5
         public async Task<IActionResult> Edit(int? id)

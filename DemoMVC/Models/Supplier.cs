@@ -2,13 +2,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DemoMVC.Models
 {
-    public class Category
+    public class Supplier
     {
         public int Id { get; set; }
 
         [Required]
         public string Name { get; set; } = "";
 
-        public List<Product> Products { get; set; } = new();
+        public string? Address { get; set; }
+
+        public List<Import> Imports { get; set; } = new();
     }
 }
